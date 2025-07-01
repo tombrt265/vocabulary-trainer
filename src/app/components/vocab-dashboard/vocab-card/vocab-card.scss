@@ -1,4 +1,5 @@
-:host {
+:host,
+a {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,4 +9,9 @@
   border: 0.2rem solid lightblue;
   border-radius: 1rem;
   margin: 1rem;
+}
+a {
+  margin: 0;
+  border: 0;
+  cursor: pointer;
 }
