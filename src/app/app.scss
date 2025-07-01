@@ -79,3 +79,15 @@ footer .logo {
   width: auto;
   vertical-align: middle;
 }
+
+@media screen and (max-width: 600px) and (min-width: 520px) {
+  header {
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 520px) {
+  header {
+    font-size: 0.6rem;
+    text-align: center;
+  }
+}
