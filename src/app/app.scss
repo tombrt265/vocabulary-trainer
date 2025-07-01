@@ -1,0 +1,77 @@
+:host {
+  --content-padding: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+main {
+  flex: 1;
+}
+
+/* Header */
+header {
+  height: 3rem;
+  background-color: #fff;
+  box-shadow: 0 2px 6px #ccd1e9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo {
+  height: 100%;
+  display: flex;
+  padding: 0 1rem;
+}
+header img {
+  height: 100%;
+  width: auto;
+}
+header span {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #1d113c;
+  line-height: 3rem;
+  padding: 0 0.5rem;
+}
+header ul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+header li {
+  display: inline;
+  height: 100%;
+  line-height: 3rem;
+  vertical-align: middle;
+  padding: 0 1rem;
+  font-size: 0.9em;
+  font-weight: 300;
+  cursor: pointer;
+}
+header li:hover {
+  background-color: #ccd1e9;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  background-color: #f4f8fb;
+  color: #333;
+  font-size: 9pt;
+  line-height: 30px;
+}
+footer .item {
+  padding: 0 10px;
+}
+footer .logo {
+  height: 20px;
+  width: auto;
+  vertical-align: middle;
+}

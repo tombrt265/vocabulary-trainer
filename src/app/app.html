@@ -1,1 +1,33 @@
-<p>app works</p>
+<!-- HEADER -->
+<header>
+  <div class="logo"><img [src]="logo" /><span>Vocabulary Trainer</span></div>
+  <ul>
+    <li>Add Vocabulary</li>
+    <li>Groups</li>
+    <li>Settings</li>
+  </ul>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+  <app-vocab-dashboard></app-vocab-dashboard>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a>
+      <img [src]="logo" alt="Vocabulary Trainer Logo" class="logo brand" />
+    </a>
+    <span class="item brand">&copy; 2025 Vocabulary Trainer, Inc.</span>
+  </div>
+  <a>
+    <span class="item">FAQ</span>
+  </a>
+  <a>
+    <span class="item">Contact</span>
+  </a>
+  <a>
+    <span class="item">Privacy Policy</span>
+  </a>
+</footer>

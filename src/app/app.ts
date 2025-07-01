@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { VocabDashboard } from "./components/vocab-dashboard/vocab-dashboard";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [VocabDashboard],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected title = 'vocab-trainer';
+  readonly logo = 'assets/logo.png';
 }

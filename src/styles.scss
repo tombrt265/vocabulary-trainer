@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400");
+
+/* General */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f8fb;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: lightblue;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: rgb(86, 200, 241);
+}
