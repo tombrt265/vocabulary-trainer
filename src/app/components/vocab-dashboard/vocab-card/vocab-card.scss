@@ -9,9 +9,18 @@ a {
   border: 0.2rem solid lightblue;
   border-radius: 1rem;
   margin: 1rem;
+  color: rgb(65, 195, 238);
+  font-size: 1.5rem;
 }
 a {
   margin: 0;
   border: 0;
   cursor: pointer;
+}
+input {
+  all: unset;
+  text-align: center;
+  border-bottom: 1px solid lightblue;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }

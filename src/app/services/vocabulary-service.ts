@@ -10,7 +10,21 @@ export class VocabularyService {
   private readonly wordPairUrl = 'http://localhost:3000/wordpairs';
   private readonly http = inject(HttpClient);
 
-  getAllWordPairs(): Observable<WordPair[]> {
+  getAllVocabulary(): Observable<WordPair[]> {
     return this.http.get<WordPair[]>(this.wordPairUrl);
+  }
+
+  addVocabulary(wordPair: WordPair) {
+    this.http
+      .post(this.wordPairUrl, wordPair)
+      .subscribe((wordPair) => console.log('word pair added: ', wordPair));
+  }
+
+  deleteVocabulary(wordPair: WordPair) {
+    this.http.delete(this.wordPairUrl, { body: wordPair });
+  }
+
+  changeVocabulary(wordPair: WordPair) {
+    this.http.put(this.wordPairUrl, wordPair)
   }
 }

@@ -9,4 +9,5 @@ import { WordPair } from '../../../models/word-pair';
 })
 export class VocabCard {
   wordPair = input.required<WordPair>();
+  empty = input<Boolean>(false);
 }

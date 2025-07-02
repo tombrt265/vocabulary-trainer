@@ -1,4 +1,11 @@
+@if (!empty()) {
 <a>
   <p>{{wordPair().original}}</p>
   <p>{{wordPair().translation}}</p>
 </a>
+} @else {
+<a>
+  <input type="text" (change)="wordPair().original" />
+  <input type="text" (change)="wordPair().translation" />
+</a>
+}

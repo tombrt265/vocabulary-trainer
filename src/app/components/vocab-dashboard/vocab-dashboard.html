@@ -1,8 +1,8 @@
 <section class="cards-container">
-  @for (wordPair of vocabularyList; track $index) {
+  @for (wordPair of vocabularyList(); track $index) {
   <app-vocab-card [wordPair]="wordPair"></app-vocab-card>
   }
 </section>
 <section class="btn-container">
-  <a class="btn-primary">Add</a>
+  <a class="btn-primary" (click)="openAddDialog()">Add</a>
 </section>

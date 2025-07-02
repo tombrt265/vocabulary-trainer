@@ -23,12 +23,24 @@ body {
 
 .btn-primary {
   display: inline-block;
+  align-self: center;
   background-color: lightblue;
   margin: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
+  width: fit-content;
+  border: 0;
   cursor: pointer;
 }
 .btn-primary:hover {
   background-color: rgb(86, 200, 241);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

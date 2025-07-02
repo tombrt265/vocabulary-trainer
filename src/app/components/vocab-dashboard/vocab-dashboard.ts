@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { VocabCard } from './vocab-card/vocab-card';
 import { WordPair } from '../../models/word-pair';
 import { VocabularyService } from '../../services/vocabulary-service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddVocabDialog } from './add-vocab-dialog/add-vocab-dialog';
 
 @Component({
   selector: 'app-vocab-dashboard',
@@ -11,12 +13,17 @@ import { VocabularyService } from '../../services/vocabulary-service';
 })
 export class VocabDashboard {
   private readonly vocabularyService = inject(VocabularyService);
-  vocabularyList: WordPair[] = [];
+  private readonly dialog = inject(MatDialog);
+  vocabularyList = signal<WordPair[]>([]);
 
   constructor() {
-    this.vocabularyService.getAllWordPairs().subscribe((data) => {
-      this.vocabularyList = data;
+    this.vocabularyService.getAllVocabulary().subscribe((data) => {
+      this.vocabularyList.set(data);
       console.log(data);
     });
+  }
+
+  openAddDialog() {
+    this.dialog.open(AddVocabDialog);
   }
 }
