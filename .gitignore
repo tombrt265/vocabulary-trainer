@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 # JSON-Server Data Base
+db.json
