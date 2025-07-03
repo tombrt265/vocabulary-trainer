@@ -24,6 +24,14 @@ export class VocabDashboard {
   }
 
   openAddDialog() {
-    this.dialog.open(AddVocabDialog);
+    this.dialog
+      .open(AddVocabDialog)
+      .afterClosed()
+      .subscribe((newWordPair: WordPair) => {
+        if (newWordPair) {
+          const current = this.vocabularyList();
+          this.vocabularyList.set([...current, newWordPair]);
+        }
+      });
   }
 }
