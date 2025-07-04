@@ -26,8 +26,11 @@ export class AddVocabDialog {
   addVocabulary() {
     const wp = this.wordPair();
     if (wp.original !== '' && wp.translation !== '') {
-      this.vocabService.addVocabulary(this.wordPair());
-      this.dialogRef.close(this.wordPair());
+      this.vocabService
+        .addVocabulary(this.wordPair())
+        .subscribe((savedWord) => {
+          this.dialogRef.close(savedWord);
+        });
     } else {
       this.wordPair.set({ original: 'Empty Input', translation: '' });
     }
