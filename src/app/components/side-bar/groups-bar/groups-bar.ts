@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-groups-bar',
   imports: [],
   templateUrl: './groups-bar.html',
-  styleUrl: './groups-bar.scss'
+  styleUrl: './groups-bar.scss',
 })
 export class GroupsBar {
-
+  groups = ['Französisch', 'Englisch', 'Russisch'];
 }
