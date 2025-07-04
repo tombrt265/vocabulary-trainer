@@ -39,10 +39,11 @@ body {
 }
 .btn-secondary {
   display: inline-block;
+  font-size: 0.7rem;
   align-self: center;
   background-color: $color-blue;
   margin: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   border: 2px solid $color-blue-secondary;
   border-radius: 0.3rem;
   width: fit-content;
