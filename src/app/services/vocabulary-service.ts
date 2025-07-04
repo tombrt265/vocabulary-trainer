@@ -14,17 +14,15 @@ export class VocabularyService {
     return this.http.get<WordPair[]>(this.wordPairUrl);
   }
 
-  addVocabulary(wordPair: WordPair) {
-    this.http
-      .post(this.wordPairUrl, wordPair)
-      .subscribe((wordPair) => console.log('word pair added: ', wordPair));
+  addVocabulary(wordPair: WordPair): Observable<WordPair> {
+    return this.http.post<WordPair>(this.wordPairUrl, wordPair);
   }
 
-  deleteVocabulary(wordPair: WordPair) {
-    this.http.delete(this.wordPairUrl, { body: wordPair });
+  deleteVocabulary(id: string) {
+    return this.http.delete(`${this.wordPairUrl}/${id}`);
   }
 
   changeVocabulary(wordPair: WordPair) {
-    this.http.put(this.wordPairUrl, wordPair)
+    this.http.put(this.wordPairUrl, wordPair);
   }
 }
