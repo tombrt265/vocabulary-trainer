@@ -25,7 +25,7 @@ a {
   cursor: pointer;
   position: relative;
 }
-button {
+#btn-trash {
   position: absolute;
   top: 120px;
   left: 280px;
@@ -40,8 +40,21 @@ button {
 img {
   width: 1.5rem;
 }
-a:hover button,
-button:hover {
+a:hover #btn-trash,
+#btn-trash:hover {
+  opacity: 1;
+  visibility: visible;
+}
+#btn-edit {
+  position: absolute;
+  top: 108px;
+  left: 32%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+a:hover #btn-edit,
+#edit-trash:hover {
   opacity: 1;
   visibility: visible;
 }

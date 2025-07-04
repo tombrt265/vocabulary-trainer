@@ -37,3 +37,18 @@ body {
 .btn-primary:hover {
   background-color: $color-blue;
 }
+.btn-secondary {
+  display: inline-block;
+  align-self: center;
+  background-color: $color-blue;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid $color-blue-secondary;
+  border-radius: 0.3rem;
+  width: fit-content;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background-color: $color-blue-secondary;
+  border: 2px solid $color-blue;
+}

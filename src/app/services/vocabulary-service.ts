@@ -22,7 +22,7 @@ export class VocabularyService {
     return this.http.delete(`${this.wordPairUrl}/${id}`);
   }
 
-  changeVocabulary(wordPair: WordPair) {
-    this.http.put(this.wordPairUrl, wordPair);
+  editVocabulary(wordPair: WordPair) {
+    return this.http.put(`${this.wordPairUrl}/${wordPair.id}`, wordPair);
   }
 }
