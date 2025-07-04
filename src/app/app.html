@@ -1,16 +1,48 @@
 <!-- HEADER -->
 <header>
-  <div class="logo"><img [src]="logo" /><span>Vocabulary Trainer</span></div>
+  <a [routerLink]="['/']" routerLinkActive="router-link-active" class="logo"
+    ><img [src]="logo" /><span>Vocabulary Trainer</span></a
+  >
   <ul>
-    <li>Add Vocabulary</li>
-    <li>Groups</li>
-    <li>Settings</li>
+    <li
+      id="nav-groups"
+      (mouseenter)="showGroupBar()"
+      (mouseleave)="showGroupBar()"
+    >
+      Groups
+    </li>
+    <li
+      id="nav-settings"
+      (mouseenter)="showSettingsBar()"
+      (mouseleave)="showSettingsBar()"
+    >
+      Settings
+    </li>
   </ul>
 </header>
 
 <!-- MAIN CONTENT -->
 <main>
-  <app-vocab-dashboard></app-vocab-dashboard>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  @if (isGroupsVisible()) {
+  <div
+    class="side-bar groups"
+    (mouseenter)="showGroupBar()"
+    (mouseleave)="showGroupBar()"
+  >
+    <app-groups-bar></app-groups-bar>
+  </div>
+  } @else if (isSettingsVisible()) {
+  <div
+    class="side-bar settings"
+    (mouseenter)="showSettingsBar()"
+    (mouseleave)="showSettingsBar()"
+  >
+    side-bar settings
+  </div>
+  }
 </main>
 
 <!-- FOOTER -->
