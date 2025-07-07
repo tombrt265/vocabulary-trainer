@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { WordPair } from '../models/word-pair';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,16 @@ export class VocabularyService {
 
   getAllVocabulary(): Observable<WordPair[]> {
     return this.http.get<WordPair[]>(this.wordPairUrl);
+  }
+
+  getVocabularyFromGroupId(groupId: string): Observable<WordPair[]> {
+    return this.getAllVocabulary().pipe(
+      map((list) =>
+        list.filter((wordPair) => {
+          wordPair.groupId === groupId;
+        })
+      )
+    );
   }
 
   addVocabulary(wordPair: WordPair): Observable<WordPair> {
