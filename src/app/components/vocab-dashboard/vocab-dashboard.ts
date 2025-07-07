@@ -14,6 +14,7 @@ import { AddVocabDialog } from './add-vocab-dialog/add-vocab-dialog';
 export class VocabDashboard {
   private readonly vocabularyService = inject(VocabularyService);
   private readonly dialog = inject(MatDialog);
+
   vocabularyList = signal<WordPair[]>([]);
 
   constructor() {
@@ -27,8 +28,9 @@ export class VocabDashboard {
     this.dialog
       .open(AddVocabDialog)
       .afterClosed()
-      .subscribe((newWordPair: WordPair) => {
+      .subscribe((newWordPair) => {
         if (newWordPair) {
+          this.vocabularyService.addVocabulary(newWordPair).subscribe();
           const current = this.vocabularyList();
           this.vocabularyList.set([...current, newWordPair]);
         }

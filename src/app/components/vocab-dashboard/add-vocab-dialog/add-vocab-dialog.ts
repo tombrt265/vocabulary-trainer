@@ -13,6 +13,7 @@ import { VocabularyService } from '../../../services/vocabulary-service';
 export class AddVocabDialog {
   readonly dialogRef = inject(MatDialogRef);
   private readonly vocabService = inject(VocabularyService);
+
   wordPair = signal<WordPair>({ original: '', translation: '' });
 
   updateOriginal(newOriginal: string) {
@@ -26,11 +27,7 @@ export class AddVocabDialog {
   addVocabulary() {
     const wp = this.wordPair();
     if (wp.original !== '' && wp.translation !== '') {
-      this.vocabService
-        .addVocabulary(this.wordPair())
-        .subscribe((savedWord) => {
-          this.dialogRef.close(savedWord);
-        });
+      this.dialogRef.close(wp);
     } else {
       this.wordPair.set({ original: 'Empty Input', translation: '' });
     }
