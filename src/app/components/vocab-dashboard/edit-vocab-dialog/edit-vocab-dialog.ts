@@ -11,12 +11,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class EditVocabDialog {
   readonly dialogRef = inject(MatDialogRef);
+  readonly data = inject<WordPair>(MAT_DIALOG_DATA);
 
-  wordPair = signal<WordPair>({ original: '', translation: '' });
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: WordPair) {
-    this.wordPair.set(data);
-  }
+  wordPair = signal<WordPair>(this.data);
 
   updateOriginal(newOriginal: string) {
     this.wordPair.update((data) => ({ ...data, original: newOriginal }));
