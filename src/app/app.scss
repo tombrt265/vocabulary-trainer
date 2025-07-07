@@ -6,13 +6,6 @@
   flex-direction: column;
   min-height: 100%;
 }
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-}
 
 /* Header */
 header {
@@ -25,9 +18,11 @@ header {
   color: $text-black;
 }
 header .logo {
+  all: unset;
   height: 100%;
   display: flex;
   padding: 0 1rem;
+  cursor: pointer;
 }
 header img {
   height: 100%;
@@ -60,6 +55,27 @@ header li:hover {
   background-color: $color-blue-secondary;
 }
 
+/* Main */
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+.content {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+.side-bar {
+  height: 30rem;
+  min-width: 10.8rem;
+  background-color: $color-blue-secondary;
+}
+
 /* Footer */
 footer {
   display: flex;
@@ -86,10 +102,16 @@ footer .logo {
   header {
     font-size: 0.8em;
   }
+  .side-bar {
+    min-width: 9.45rem;
+  }
 }
 @media screen and (max-width: 520px) {
   header {
     font-size: 0.6rem;
     text-align: center;
+  }
+  .side-bar {
+    min-width: 8.05rem;
   }
 }
