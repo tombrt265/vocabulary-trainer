@@ -24,7 +24,6 @@ export class VocabDashboard {
       .pipe(switchMap(() => this.vocabularyService.getAllVocabulary()))
       .subscribe((data) => {
         this.vocabularyList.set(data);
-        console.log(data);
       });
     this.fetchAllVocabularyData$.next();
   }
@@ -43,9 +42,8 @@ export class VocabDashboard {
   }
 
   deleteVocabCard(wordPair: WordPair) {
-    this.vocabularyService.deleteVocabulary(wordPair.id!).subscribe();
-    this.vocabularyList.update((list) =>
-      list.filter((item) => item.id !== wordPair.id)
-    );
+    this.vocabularyService.deleteVocabulary(wordPair.id!).subscribe(() => {
+      this.fetchAllVocabularyData$.next();
+    });
   }
 }
