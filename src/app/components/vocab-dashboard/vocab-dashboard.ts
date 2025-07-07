@@ -4,6 +4,7 @@ import { WordPair } from '../../models/word-pair';
 import { VocabularyService } from '../../services/vocabulary-service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddVocabDialog } from './add-vocab-dialog/add-vocab-dialog';
+import { Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-vocab-dashboard',
@@ -16,12 +17,16 @@ export class VocabDashboard {
   private readonly dialog = inject(MatDialog);
 
   vocabularyList = signal<WordPair[]>([]);
+  fetchAllVocabularyData$ = new Subject<void>();
 
   constructor() {
-    this.vocabularyService.getAllVocabulary().subscribe((data) => {
-      this.vocabularyList.set(data);
-      console.log(data);
-    });
+    this.fetchAllVocabularyData$
+      .pipe(switchMap(() => this.vocabularyService.getAllVocabulary()))
+      .subscribe((data) => {
+        this.vocabularyList.set(data);
+        console.log(data);
+      });
+    this.fetchAllVocabularyData$.next();
   }
 
   openAddDialog() {
@@ -30,9 +35,9 @@ export class VocabDashboard {
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {
-          this.vocabularyService.addVocabulary(newWordPair).subscribe();
-          const current = this.vocabularyList();
-          this.vocabularyList.set([...current, newWordPair]);
+          this.vocabularyService.addVocabulary(newWordPair).subscribe(() => {
+            this.fetchAllVocabularyData$.next();
+          });
         }
       });
   }
