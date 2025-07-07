@@ -1,0 +1,52 @@
+@use "../../../../variables" as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.groups {
+  width: 100%;
+}
+.group {
+  width: 100%;
+  height: 2rem;
+  background-color: $color-blue-secondary;
+  border-bottom: 2px solid $color-blue;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.group:hover {
+  background-color: $color-blue;
+  border-bottom: 2px solid $color-blue-secondary;
+}
+.color-picker input[type="color"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+  cursor: default;
+  margin: auto 0.5rem;
+}
+
+.color-picker input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  border: 2px solid $color-blue;
+}
+
+.color-picker input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
