@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { VocabCard } from './vocab-card/vocab-card';
 import { WordPair } from '../../models/word-pair';
 import { VocabularyService } from '../../services/vocabulary-service';
-import { MatDialog } from '@angular/material/dialog';
 import { AddVocabDialog } from './add-vocab-dialog/add-vocab-dialog';
 
 @Component({
@@ -33,5 +33,12 @@ export class VocabDashboard {
           this.vocabularyList.set([...current, newWordPair]);
         }
       });
+  }
+
+  deleteVocabCard(wordPair: WordPair) {
+    this.vocabularyService.deleteVocabulary(wordPair.id!).subscribe();
+    this.vocabularyList.update((list) =>
+      list.filter((item) => item.id !== wordPair.id)
+    );
   }
 }
