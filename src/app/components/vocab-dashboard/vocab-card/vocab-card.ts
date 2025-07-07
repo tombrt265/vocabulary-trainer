@@ -1,5 +1,4 @@
-import { Component, input } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WordPair } from '../../../models/word-pair';
 
@@ -12,7 +11,7 @@ import { WordPair } from '../../../models/word-pair';
 export class VocabCard {
   wordPair = input.required<WordPair>();
 
-  @Output() deleteVocabCard = new EventEmitter<WordPair>();
+  deleteVocabCard = output<WordPair>();
 
   deleteVocabulary() {
     this.deleteVocabCard.emit(this.wordPair());
