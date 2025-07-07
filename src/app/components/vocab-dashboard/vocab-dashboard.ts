@@ -41,4 +41,10 @@ export class VocabDashboard {
         }
       });
   }
+
+  editVocabulary(wordPair: WordPair) {
+    this.vocabularyService.editVocabulary(wordPair).subscribe(() => {
+      this.fetchAllVocabularyData$.next();
+    });
+  }
 }

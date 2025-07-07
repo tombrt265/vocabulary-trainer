@@ -1,0 +1,15 @@
+<div id="card">
+  <input
+    type="text"
+    [ngModel]="wordPair().original"
+    (ngModelChange)="updateOriginal($event)"
+  />
+  <input
+    type="text"
+    [ngModel]="wordPair().translation"
+    (ngModelChange)="updateTranslation($event)"
+  />
+</div>
+<button class="btn-primary" (click)="editVocabulary()">
+  Änderungen speichern
+</button>

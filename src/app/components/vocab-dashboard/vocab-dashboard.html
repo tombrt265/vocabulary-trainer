@@ -1,6 +1,9 @@
 <section class="cards-container">
   @for (wordPair of vocabularyList(); track $index) {
-  <app-vocab-card [wordPair]="wordPair"></app-vocab-card>
+  <app-vocab-card
+    [wordPair]="wordPair"
+    (editVocabulary)="editVocabulary($event)"
+  ></app-vocab-card>
   }
 </section>
 <section class="btn-container">

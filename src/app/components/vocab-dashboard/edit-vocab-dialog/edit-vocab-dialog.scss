@@ -1,0 +1,25 @@
+@use "../../../../variables" as *;
+
+#card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  width: 20rem;
+  border: 0.2rem solid $color-blue;
+  border-radius: 1rem;
+  margin: 1rem;
+  color: $text-black;
+  font-size: 1.5rem;
+  box-shadow: 4px 4px $color-blue;
+  font-weight: 600;
+}
+input {
+  all: unset;
+  width: 16rem;
+  text-align: center;
+  border-bottom: 1px solid $color-blue;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
