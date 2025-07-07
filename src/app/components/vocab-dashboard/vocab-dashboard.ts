@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { VocabCard } from './vocab-card/vocab-card';
 import { WordPair } from '../../models/word-pair';
 import { VocabularyService } from '../../services/vocabulary-service';
-import { MatDialog } from '@angular/material/dialog';
 import { AddVocabDialog } from './add-vocab-dialog/add-vocab-dialog';
 import { Subject, switchMap } from 'rxjs';
 
@@ -24,7 +24,6 @@ export class VocabDashboard {
       .pipe(switchMap(() => this.vocabularyService.getAllVocabulary()))
       .subscribe((data) => {
         this.vocabularyList.set(data);
-        console.log(data);
       });
     this.fetchAllVocabularyData$.next();
   }
@@ -40,5 +39,11 @@ export class VocabDashboard {
           });
         }
       });
+  }
+
+  deleteVocabCard(wordPair: WordPair) {
+    this.vocabularyService.deleteVocabulary(wordPair.id!).subscribe(() => {
+      this.fetchAllVocabularyData$.next();
+    });
   }
 }
