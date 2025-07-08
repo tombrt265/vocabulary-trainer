@@ -9,7 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { WordPair } from '../../../models/word-pair';
 import { MatDialog } from '@angular/material/dialog';
-import { EditVocabDialog } from '../edit-vocab-dialog/edit-vocab-dialog';
+import { VocabDialog } from '../vocab-dialog/vocab-dialog';
 
 @Component({
   selector: 'app-vocab-card',
@@ -30,7 +30,7 @@ export class VocabCard {
 
   openEditDialog() {
     this.dialog
-      .open(EditVocabDialog, { data: this.wordPair() })
+      .open(VocabDialog, { data: this.wordPair() })
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {

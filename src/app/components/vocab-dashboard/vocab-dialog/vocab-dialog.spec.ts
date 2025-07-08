@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditVocabDialog } from './edit-vocab-dialog';
+import { VocabDialog } from './vocab-dialog';
 
-describe('EditVocabDialog', () => {
-  let component: EditVocabDialog;
-  let fixture: ComponentFixture<EditVocabDialog>;
+describe('VocabDialog', () => {
+  let component: VocabDialog;
+  let fixture: ComponentFixture<VocabDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditVocabDialog]
+      imports: [VocabDialog]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditVocabDialog);
+    fixture = TestBed.createComponent(VocabDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

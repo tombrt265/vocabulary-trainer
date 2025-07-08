@@ -10,6 +10,12 @@
     (ngModelChange)="updateTranslation($event)"
   />
 </div>
+@if (data.original == '' && data.translation == '') {
+<button class="btn-primary" (click)="addVocabulary()">
+  Vokabel hinzufügen
+</button>
+} @else {
 <button class="btn-primary" (click)="editVocabulary()">
   Änderungen speichern
 </button>
+}
