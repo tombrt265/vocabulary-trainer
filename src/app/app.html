@@ -1,6 +1,6 @@
 <!-- HEADER -->
 <header>
-  <a [routerLink]="['/']" routerLinkActive="router-link-active" class="logo"
+  <a routerLink="/vocabulary" class="logo"
     ><img [src]="logo" /><span>Vocabulary Trainer</span></a
   >
   <ul>
@@ -50,7 +50,12 @@
 <footer>
   <div>
     <a>
-      <img [src]="logo" alt="Vocabulary Trainer Logo" class="logo brand" />
+      <img
+        routerLink="/vocabulary"
+        [src]="logo"
+        alt="Vocabulary Trainer Logo"
+        class="logo brand"
+      />
     </a>
     <span class="item brand">&copy; 2025 Vocabulary Trainer, Inc.</span>
   </div>

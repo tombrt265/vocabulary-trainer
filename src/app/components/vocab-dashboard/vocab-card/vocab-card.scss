@@ -4,14 +4,14 @@
   position: relative;
   height: 10rem;
   width: 20rem;
-  border: 0.2rem solid $color-blue;
-  background-color: $color-blue-secondary;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  background-color: white;
   border-radius: 1rem;
   margin: 1rem;
-  color: $text-black;
+  color: $color-blue;
   font-size: 1.5rem;
   font-weight: 600;
-  box-shadow: 4px 4px $color-blue;
 }
 a {
   display: flex;
@@ -25,7 +25,7 @@ a {
   cursor: pointer;
   position: relative;
 }
-button {
+#btn-trash {
   position: absolute;
   top: 120px;
   left: 280px;
@@ -40,8 +40,21 @@ button {
 img {
   width: 1.5rem;
 }
-a:hover button,
-button:hover {
+a:hover #btn-trash,
+#btn-trash:hover {
+  opacity: 1;
+  visibility: visible;
+}
+#btn-edit {
+  position: absolute;
+  top: 72%;
+  left: 36%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+}
+a:hover #btn-edit,
+#edit-trash:hover {
   opacity: 1;
   visibility: visible;
 }
