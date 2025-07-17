@@ -9,7 +9,7 @@ import { Bucket } from '../models/bucket';
 })
 export class VocabularyService {
   private readonly wordPairUrl = 'http://localhost:3000/wordpairs';
-  private readonly groupUrl = 'http://localhost:3000/groups';
+  private readonly bucketUrl = 'http://localhost:3000/buckets';
   private readonly http = inject(HttpClient);
 
   getAllVocabulary(): Observable<WordPair[]> {
@@ -39,10 +39,14 @@ export class VocabularyService {
   }
 
   getAllBuckets(): Observable<Bucket[]> {
-    return this.http.get<Bucket[]>(this.groupUrl);
+    return this.http.get<Bucket[]>(this.bucketUrl);
   }
 
   addBucket(bucket: Bucket): Observable<string> {
-    return this.http.post<string>(this.groupUrl, bucket);
+    return this.http.post<string>(this.bucketUrl, bucket);
+  }
+
+  deleteBucket(bucketId: string) {
+    return this.http.delete<void>(`${this.bucketUrl}/${bucketId}`);
   }
 }

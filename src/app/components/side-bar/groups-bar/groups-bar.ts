@@ -44,4 +44,11 @@ export class GroupsBar {
     this.vocabularyService.getVocabularyFromBucketName(bucket.name || '');
     // Logic to handle vocabulary display from the selected bucket
   }
+
+  deleteGroup(bucket: Bucket) {
+    this.vocabularyService.deleteBucket(bucket.id || '').subscribe(() => {
+      this.fetchAllBucketData$.next();
+    });
+    // Should work but json-server does not create random ids on buckets???
+  }
 }

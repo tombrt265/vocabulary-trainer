@@ -10,43 +10,39 @@
   width: 100%;
 }
 .group {
+  position: relative;
   width: 100%;
   height: 2rem;
   background-color: $color-blue-secondary;
   border-bottom: 2px solid $color-blue;
+  padding: 0 0.5rem;
   cursor: pointer;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 .group:hover {
   background-color: $color-blue;
   border-bottom: 2px solid $color-blue-secondary;
 }
-.color-picker input[type="color"] {
-  appearance: none;
-  -webkit-appearance: none;
-  border: none;
-  width: 1rem;
+.group button {
+  position: absolute;
+  right: 1.5rem;
+  top: 0.5rem;
+  height: fit-content;
+  background-color: $color-blue;
+  border: 0;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+svg {
   height: 1rem;
-  border-radius: 50%;
-  overflow: hidden;
-  padding: 0;
-  cursor: default;
-  margin: auto 0.5rem;
 }
-
-.color-picker input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-
-.color-picker input[type="color"]::-webkit-color-swatch {
-  border: none;
-  border-radius: 50%;
-  border: 2px solid $color-blue;
-}
-
-.color-picker input[type="color"]::-moz-color-swatch {
-  border: none;
-  border-radius: 50%;
+.group:hover button,
+button:hover {
+  opacity: 1;
+  visibility: visible;
 }
