@@ -15,7 +15,7 @@ export class GroupsBar {
   private readonly dialog = inject(MatDialog);
   private readonly vocabularyService = inject(VocabularyService);
 
-  private fetchAllBucketData$ = new Subject<void>();
+  private readonly fetchAllBucketData$ = new Subject<void>();
   readonly bucketsList = signal<Bucket[]>([]);
 
   constructor() {
@@ -38,5 +38,10 @@ export class GroupsBar {
           });
         }
       });
+  }
+
+  onBucketSelect(bucket: Bucket) {
+    this.vocabularyService.getVocabularyFromBucketName(bucket.name || '');
+    // Logic to handle vocabulary display from the selected bucket
   }
 }

@@ -1,6 +1,6 @@
 <div class="groups">
   @for (bucket of bucketsList(); track $index) {
-  <div class="group">{{bucket.name}}</div>
+  <div class="group" (click)="onBucketSelect(bucket)">{{bucket.name}}</div>
   }
 </div>
 <button class="btn-primary" (click)="openBucketDialog()">Create Bucket</button>
