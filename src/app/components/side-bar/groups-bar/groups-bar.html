@@ -1,11 +1,6 @@
 <div class="groups">
-  @for (group of groups; track $index) {
-  <div class="group">
-    <label class="color-picker">
-      <input type="color" />
-    </label>
-    {{group}}
-  </div>
+  @for (bucket of bucketsList(); track $index) {
+  <div class="group">{{bucket.name}}</div>
   }
 </div>
-<button class="btn-primary">Create Group</button>
+<button class="btn-primary" (click)="openBucketDialog()">Create Bucket</button>

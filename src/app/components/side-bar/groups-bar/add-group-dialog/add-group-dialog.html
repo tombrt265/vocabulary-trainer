@@ -1,0 +1,9 @@
+<section>
+  <input
+    type="text"
+    placeholder="Group Name"
+    [ngModel]="bucket().name"
+    (ngModelChange)="updateBucket($event)"
+  />
+  <button class="btn-primary" (click)="addBucket()">Add Bucket</button>
+</section>

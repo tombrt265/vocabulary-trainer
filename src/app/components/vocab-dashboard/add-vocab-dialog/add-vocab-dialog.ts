@@ -12,7 +12,6 @@ import { VocabularyService } from '../../../services/vocabulary-service';
 })
 export class AddVocabDialog {
   readonly dialogRef = inject(MatDialogRef);
-  private readonly vocabService = inject(VocabularyService);
 
   wordPair = signal<WordPair>({ original: '', translation: '' });
 
