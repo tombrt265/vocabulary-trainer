@@ -1,20 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WordPair } from '../../../models/word-pair';
 import { FormsModule } from '@angular/forms';
-import { VocabularyService } from '../../../services/vocabulary-service';
 
 @Component({
-  selector: 'app-add-vocab-dialog',
+  selector: 'app-vocab-dialog',
   imports: [FormsModule],
-  templateUrl: './add-vocab-dialog.html',
-  styleUrl: './add-vocab-dialog.scss',
+  templateUrl: './vocab-dialog.html',
+  styleUrl: './vocab-dialog.scss',
 })
-export class AddVocabDialog {
+export class VocabDialog {
   readonly dialogRef = inject(MatDialogRef);
-  private readonly vocabService = inject(VocabularyService);
+  readonly data = inject<WordPair>(MAT_DIALOG_DATA);
 
-  wordPair = signal<WordPair>({ original: '', translation: '' });
+  wordPair = signal<WordPair>(this.data);
 
   updateOriginal(newOriginal: string) {
     this.wordPair.update((data) => ({ ...data, original: newOriginal }));
@@ -22,6 +21,15 @@ export class AddVocabDialog {
 
   updateTranslation(newTranslation: string) {
     this.wordPair.update((data) => ({ ...data, translation: newTranslation }));
+  }
+
+  editVocabulary() {
+    const wp = this.wordPair();
+    if (wp.original !== '' && wp.translation !== '') {
+      this.dialogRef.close(wp);
+    } else {
+      this.wordPair.set({ original: 'Empty Input', translation: '' });
+    }
   }
 
   addVocabulary() {

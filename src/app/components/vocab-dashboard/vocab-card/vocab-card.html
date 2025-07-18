@@ -1,7 +1,10 @@
 <a>
   <p>{{wordPair().original}}</p>
   <p>{{wordPair().translation}}</p>
-  <button>
+  <button class="btn-secondary" id="btn-edit" (click)="openEditDialog()">
+    Bearbeiten
+  </button>
+  <button id="btn-trash">
     <img src="../../../../assets/trashcan.png" (click)="deleteVocabulary()" />
   </button>
 </a>

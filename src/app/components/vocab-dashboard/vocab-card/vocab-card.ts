@@ -1,6 +1,13 @@
-import { Component, input, output } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WordPair } from '../../../models/word-pair';
+import { MatDialog } from '@angular/material/dialog';
+import { VocabDialog } from '../vocab-dialog/vocab-dialog';
 
 @Component({
   selector: 'app-vocab-card',
@@ -9,11 +16,24 @@ import { WordPair } from '../../../models/word-pair';
   styleUrl: './vocab-card.scss',
 })
 export class VocabCard {
-  wordPair = input.required<WordPair>();
+  private readonly dialog = inject(MatDialog);
 
+  wordPair = input.required<WordPair>();
   deleteVocabCard = output<WordPair>();
+  editVocabulary = output<WordPair>();
 
   deleteVocabulary() {
     this.deleteVocabCard.emit(this.wordPair());
+  }
+
+  openEditDialog() {
+    this.dialog
+      .open(VocabDialog, { data: this.wordPair() })
+      .afterClosed()
+      .subscribe((newWordPair) => {
+        if (newWordPair) {
+          this.editVocabulary.emit(newWordPair);
+        }
+      });
   }
 }

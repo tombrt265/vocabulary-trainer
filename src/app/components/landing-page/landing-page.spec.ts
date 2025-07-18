@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddVocabDialog } from './add-vocab-dialog';
+import { LandingPage } from './landing-page';
 
-describe('AddVocabDialog', () => {
-  let component: AddVocabDialog;
-  let fixture: ComponentFixture<AddVocabDialog>;
+describe('LandingPage', () => {
+  let component: LandingPage;
+  let fixture: ComponentFixture<LandingPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddVocabDialog]
+      imports: [LandingPage]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddVocabDialog);
+    fixture = TestBed.createComponent(LandingPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
