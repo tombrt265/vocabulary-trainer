@@ -15,7 +15,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  background-color: $color-white;
+  background-color: white;
   font-family: "Poppins", sans-serif;
   color: #333;
   display: flex;
@@ -26,14 +26,27 @@ body {
   display: inline-block;
   align-self: center;
   background-color: $color-blue-secondary;
+  color: $text-white;
   margin: 0.5rem;
   padding: 0.5rem 1rem;
-  border: 2px solid $color-blue;
   border-radius: 0.3rem;
   width: fit-content;
   cursor: pointer;
-  box-shadow: 2px 2px $color-blue;
 }
 .btn-primary:hover {
   background-color: $color-blue;
+}
+.btn-secondary {
+  display: inline-block;
+  font-size: 0.7rem;
+  align-self: center;
+  background-color: $color-blue;
+  margin: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+  width: fit-content;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background-color: $color-blue-secondary;
 }

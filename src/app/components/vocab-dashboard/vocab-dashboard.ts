@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { VocabCard } from './vocab-card/vocab-card';
 import { WordPair } from '../../models/word-pair';
 import { VocabularyService } from '../../services/vocabulary-service';
-import { AddVocabDialog } from './add-vocab-dialog/add-vocab-dialog';
 import { Subject, switchMap } from 'rxjs';
+import { VocabDialog } from './vocab-dialog/vocab-dialog';
 
 @Component({
   selector: 'app-vocab-dashboard',
@@ -30,7 +30,7 @@ export class VocabDashboard {
 
   openAddDialog() {
     this.dialog
-      .open(AddVocabDialog)
+      .open(VocabDialog, { data: { original: '', translation: '' } })
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {
@@ -43,6 +43,12 @@ export class VocabDashboard {
 
   deleteVocabCard(wordPair: WordPair) {
     this.vocabularyService.deleteVocabulary(wordPair.id!).subscribe(() => {
+      this.fetchAllVocabularyData$.next();
+    });
+  }
+
+  editVocabulary(wordPair: WordPair) {
+    this.vocabularyService.editVocabulary(wordPair).subscribe(() => {
       this.fetchAllVocabularyData$.next();
     });
   }

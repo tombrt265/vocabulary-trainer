@@ -1,6 +1,7 @@
 <a>
   <p>{{wordPair().original}}</p>
   <p>{{wordPair().translation}}</p>
+<<<<<<< HEAD
   <button>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
       <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -9,5 +10,12 @@
         (click)="deleteVocabulary()"
       />
     </svg>
+=======
+  <button class="btn-secondary" id="btn-edit" (click)="openEditDialog()">
+    Bearbeiten
+  </button>
+  <button id="btn-trash">
+    <img src="../../../../assets/trashcan.png" (click)="deleteVocabulary()" />
+>>>>>>> main
   </button>
 </a>
