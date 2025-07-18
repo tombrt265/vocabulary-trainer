@@ -1,9 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WordPair } from '../../../models/word-pair';
 import { MatDialog } from '@angular/material/dialog';
