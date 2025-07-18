@@ -1,9 +1,10 @@
-<section>
+<section class="add-group-dialog">
   <input
     type="text"
     placeholder="Group Name"
     [ngModel]="bucket().name"
     (ngModelChange)="updateBucket($event)"
   />
+  <input type="color" />
   <button class="btn-primary" (click)="addBucket()">Add Bucket</button>
 </section>

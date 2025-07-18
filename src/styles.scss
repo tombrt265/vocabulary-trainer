@@ -56,3 +56,12 @@ body {
 .btn-secondary:hover {
   background-color: $color-blue-secondary;
 }
+input[type="text"] {
+  all: unset;
+  width: 16rem;
+  text-align: center;
+  background-color: #ddd;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+}
