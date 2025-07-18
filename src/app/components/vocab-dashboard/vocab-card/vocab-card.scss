@@ -12,7 +12,6 @@
   color: $color-blue;
   font-size: 1.5rem;
   font-weight: 600;
-  cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -21,6 +20,9 @@
 }
 :host:hover {
   background-color: #ddd;
+}
+p:hover {
+  cursor: pointer;
 }
 a {
   display: flex;

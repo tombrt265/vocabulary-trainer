@@ -23,7 +23,7 @@ export class VocabCard {
 
   openEditDialog() {
     this.dialog
-      .open(VocabDialog, { data: this.wordPair() })
+      .open(VocabDialog, { data: this.wordPair(), panelClass: 'vocab-dialog' })
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {

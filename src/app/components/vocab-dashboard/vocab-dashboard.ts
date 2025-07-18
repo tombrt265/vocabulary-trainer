@@ -30,7 +30,10 @@ export class VocabDashboard {
 
   openAddDialog() {
     this.dialog
-      .open(VocabDialog, { data: { original: '', translation: '' } })
+      .open(VocabDialog, {
+        data: { original: '', translation: '' },
+        panelClass: 'vocab-dialog',
+      })
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {

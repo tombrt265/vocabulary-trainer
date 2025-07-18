@@ -1,11 +1,13 @@
 <div id="card">
   <input
     type="text"
+    placeholder="Original"
     [ngModel]="wordPair().original"
     (ngModelChange)="updateOriginal($event)"
   />
   <input
     type="text"
+    placeholder="Translation"
     [ngModel]="wordPair().translation"
     (ngModelChange)="updateTranslation($event)"
   />
