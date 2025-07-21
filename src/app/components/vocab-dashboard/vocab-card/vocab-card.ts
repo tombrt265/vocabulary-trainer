@@ -1,9 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WordPair } from '../../../models/word-pair';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,7 +23,7 @@ export class VocabCard {
 
   openEditDialog() {
     this.dialog
-      .open(VocabDialog, { data: this.wordPair() })
+      .open(VocabDialog, { data: this.wordPair(), panelClass: 'vocab-dialog' })
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {

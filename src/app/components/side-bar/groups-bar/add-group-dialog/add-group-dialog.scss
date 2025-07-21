@@ -1,0 +1,15 @@
+.add-group-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 1rem;
+}
+input {
+  margin: 1rem 0 0.5rem 0;
+}
+button {
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1rem 0;
+}

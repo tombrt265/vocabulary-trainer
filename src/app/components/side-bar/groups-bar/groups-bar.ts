@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddBucketDialog } from './add-group-dialog/add-group-dialog';
+import { VocabularyService } from '../../../services/vocabulary-service';
+import { Subject, switchMap } from 'rxjs';
+import { Bucket } from '../../../models/bucket';
 
 @Component({
   selector: 'app-groups-bar',
@@ -7,5 +12,43 @@ import { Component } from '@angular/core';
   styleUrl: './groups-bar.scss',
 })
 export class GroupsBar {
-  groups = ['Französisch', 'Englisch', 'Russisch'];
+  private readonly dialog = inject(MatDialog);
+  private readonly vocabularyService = inject(VocabularyService);
+
+  private readonly fetchAllBucketData$ = new Subject<void>();
+  readonly bucketsList = signal<Bucket[]>([]);
+
+  constructor() {
+    this.fetchAllBucketData$
+      .pipe(switchMap(() => this.vocabularyService.getAllBuckets()))
+      .subscribe((data) => {
+        this.bucketsList.set(data);
+      });
+    this.fetchAllBucketData$.next();
+  }
+
+  openBucketDialog() {
+    this.dialog
+      .open(AddBucketDialog)
+      .afterClosed()
+      .subscribe((newBucket) => {
+        if (newBucket) {
+          this.vocabularyService.addBucket(newBucket).subscribe(() => {
+            this.fetchAllBucketData$.next();
+          });
+        }
+      });
+  }
+
+  onBucketSelect(bucket: Bucket) {
+    this.vocabularyService.getVocabularyFromBucketName(bucket.name || '');
+    // Logic to handle vocabulary display from the selected bucket
+  }
+
+  deleteGroup(bucket: Bucket) {
+    this.vocabularyService.deleteBucket(bucket.id || '').subscribe(() => {
+      this.fetchAllBucketData$.next();
+    });
+    // Should work but json-server does not create random ids on buckets???
+  }
 }

@@ -14,8 +14,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $color-blue-secondary;
-  border-bottom: 2px solid $color-blue-secondary;
+  color: $text-black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 header .logo {
   all: unset;
@@ -23,7 +23,7 @@ header .logo {
   display: flex;
   padding: 0 1rem;
   cursor: pointer;
-  color: $color-blue-secondary;
+  color: $text-black;
 }
 header img {
   height: 100%;
@@ -53,7 +53,7 @@ header li {
   cursor: pointer;
 }
 header li:hover {
-  background-color: $color-blue-secondary;
+  background-color: #ddd;
 }
 
 /* Main */
@@ -74,29 +74,34 @@ main {
 .side-bar {
   height: 30rem;
   min-width: 10.8rem;
-  background-color: $color-blue-secondary;
+  background-color: #ddd;
 }
 
 /* Footer */
 footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 2rem 0;
-  background-color: white;
-  color: $color-blue-secondary;
-  font-size: 9pt;
-  line-height: 30px;
-}
-footer .item {
-  padding: 0 10px;
-}
-footer .logo {
-  height: 20px;
-  width: auto;
-  vertical-align: middle;
+  & {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
+    background-color: white;
+    color: $text-black;
+    font-size: 9pt;
+    line-height: 30px;
+  }
+  .item {
+    padding: 0 10px;
+  }
+  .logo {
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+  }
+  a {
+    cursor: pointer;
+  }
 }
 
 @media screen and (max-width: 600px) and (min-width: 520px) {

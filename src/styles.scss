@@ -22,6 +22,11 @@ body {
   flex-direction: column;
 }
 
+.mat-mdc-dialog-container .mat-mdc-dialog-surface {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
 .btn-primary {
   display: inline-block;
   align-self: center;
@@ -32,6 +37,7 @@ body {
   border-radius: 0.3rem;
   width: fit-content;
   cursor: pointer;
+  border: 0;
 }
 .btn-primary:hover {
   background-color: $color-blue;
@@ -49,4 +55,13 @@ body {
 }
 .btn-secondary:hover {
   background-color: $color-blue-secondary;
+}
+input[type="text"] {
+  all: unset;
+  width: 16rem;
+  text-align: center;
+  background-color: #ddd;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
 }
