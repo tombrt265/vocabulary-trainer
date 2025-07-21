@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GroupsBar } from "./components/side-bar/groups-bar/groups-bar";
+import { GroupsBar } from './components/side-bar/groups-bar/groups-bar';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +10,15 @@ import { GroupsBar } from "./components/side-bar/groups-bar/groups-bar";
 })
 export class App {
   protected title = 'vocab-trainer';
-  isGroupsVisible = signal(false);
-  isSettingsVisible = signal(false);
+  isBucketsTabVisible = signal(false);
+  isSettingsTabVisible = signal(false);
   readonly logo = 'assets/logo.png';
 
-  showGroupBar() {
-    this.isGroupsVisible.update((value) => !value);
+  onBucketsClick() {
+    this.isBucketsTabVisible.update((value) => !value);
   }
 
-  showSettingsBar() {
-    this.isSettingsVisible.update((value) => !value);
+  onSettingsClick() {
+    this.isSettingsTabVisible.update((value) => !value);
   }
 }
