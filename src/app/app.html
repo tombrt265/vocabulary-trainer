@@ -6,20 +6,36 @@
   <ul>
     <li
       id="nav-groups"
-      (mouseenter)="showGroupBar()"
-      (mouseleave)="showGroupBar()"
-      (click)="showGroupBar()"
+      (mouseenter)="onBucketsClick()"
+      (mouseleave)="onBucketsClick()"
     >
       Buckets
     </li>
     <li
       id="nav-settings"
-      (mouseenter)="showSettingsBar()"
-      (mouseleave)="showSettingsBar()"
+      (mouseenter)="onSettingsClick()"
+      (mouseleave)="onSettingsClick()"
     >
       Einstellungen
     </li>
   </ul>
+  @if (isBucketsTabVisible()) {
+  <div
+    class="side-bar buckets"
+    (mouseenter)="onBucketsClick()"
+    (mouseleave)="onBucketsClick()"
+  >
+    <app-groups-bar></app-groups-bar>
+  </div>
+  } @else if (isSettingsTabVisible()) {
+  <div
+    class="side-bar settings"
+    (mouseenter)="onSettingsClick()"
+    (mouseleave)="onSettingsClick()"
+  >
+    side-bar settings
+  </div>
+  }
 </header>
 
 <!-- MAIN CONTENT -->
@@ -27,23 +43,6 @@
   <div class="content">
     <router-outlet></router-outlet>
   </div>
-  @if (isGroupsVisible()) {
-  <div
-    class="side-bar groups"
-    (mouseenter)="showGroupBar()"
-    (mouseleave)="showGroupBar()"
-  >
-    <app-groups-bar></app-groups-bar>
-  </div>
-  } @else if (isSettingsVisible()) {
-  <div
-    class="side-bar settings"
-    (mouseenter)="showSettingsBar()"
-    (mouseleave)="showSettingsBar()"
-  >
-    side-bar settings
-  </div>
-  }
 </main>
 
 <!-- FOOTER -->
