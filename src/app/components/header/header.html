@@ -1,0 +1,38 @@
+<header>
+  <a routerLink="/vocabulary" class="logo"
+    ><img [src]="logo" /><span>Vocabulary Trainer</span></a
+  >
+  <ul>
+    <li
+      id="nav-groups"
+      (mouseenter)="onBucketsClick()"
+      (mouseleave)="onBucketsClick()"
+    >
+      Buckets
+    </li>
+    <li
+      id="nav-settings"
+      (mouseenter)="onSettingsClick()"
+      (mouseleave)="onSettingsClick()"
+    >
+      Einstellungen
+    </li>
+  </ul>
+  @if (isBucketsTabVisible()) {
+  <div
+    class="side-bar buckets"
+    (mouseenter)="onBucketsClick()"
+    (mouseleave)="onBucketsClick()"
+  >
+    <app-groups-bar></app-groups-bar>
+  </div>
+  } @else if (isSettingsTabVisible()) {
+  <div
+    class="side-bar settings"
+    (mouseenter)="onSettingsClick()"
+    (mouseleave)="onSettingsClick()"
+  >
+    side-bar settings
+  </div>
+  }
+</header>
