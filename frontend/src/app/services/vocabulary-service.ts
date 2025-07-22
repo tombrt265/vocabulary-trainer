@@ -8,7 +8,7 @@ import { Bucket } from '../models/bucket';
   providedIn: 'root',
 })
 export class VocabularyService {
-  private readonly wordPairUrl = 'http://localhost:3000/wordpairs';
+  private readonly wordPairUrl = 'http://localhost:3000/vocab';
   private readonly bucketUrl = 'http://localhost:3000/buckets';
   private readonly http = inject(HttpClient);
 
@@ -30,7 +30,7 @@ export class VocabularyService {
     return this.http.post<WordPair>(this.wordPairUrl, wordPair);
   }
 
-  deleteVocabulary(id: string) {
+  deleteVocabulary(id: number) {
     return this.http.delete(`${this.wordPairUrl}/${id}`);
   }
 
@@ -46,7 +46,7 @@ export class VocabularyService {
     return this.http.post<string>(this.bucketUrl, bucket);
   }
 
-  deleteBucket(bucketId: string) {
-    return this.http.delete<void>(`${this.bucketUrl}/${bucketId}`);
+  deleteBucket(bucketName: string) {
+    return this.http.delete<void>(`${this.bucketUrl}/${bucketName}`);
   }
 }

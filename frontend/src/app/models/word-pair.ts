@@ -1,5 +1,5 @@
 export interface WordPair {
-  id?: string;
+  id?: number;
   original: string;
   translation: string;
   bucketName?: string;

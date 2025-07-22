@@ -41,7 +41,7 @@ initSQLs.forEach((sql) => {
 
 // === REST-API ===
 
-// Alle Vokabeln abrufen
+// get all vocabulary
 app.get("/vocab", (req, res) => {
   db.all("SELECT * FROM vocab", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -49,30 +49,51 @@ app.get("/vocab", (req, res) => {
   });
 });
 
-// Neue Vokabel hinzufügen
-app.post("/vocab", (req, res) => {
-  const { word, translation, groupName } = req.body;
-  const sql =
-    "INSERT INTO vocab (word, translation, groupName) VALUES (?, ?, ?)";
-  db.run(sql, [word, translation, groupName], function (err) {
+// get all vocabulary from bucket
+app.get("/vocab/:bucketName", (req, res) => {
+  const { bucketName } = req.params;
+  db.all(
+    "SELECT * FROM vocab WHERE groupName = ?",
+    [bucketName],
+    (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows);
+    }
+  );
+});
+
+// get all buckets
+app.get("/buckets", (req, res) => {
+  db.all("SELECT * FROM buckets", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ id: this.lastID, word, translation, groupName });
+    res.json(rows);
   });
 });
 
-// Vokabel aktualisieren
+// add new vocabulary to bucket
+app.post("/vocab", (req, res) => {
+  const { original, translation, bucketName } = req.body;
+  const sql =
+    "INSERT INTO vocab (original, translation, groupName) VALUES (?, ?, ?)";
+  db.run(sql, [original, translation, bucketName], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ id: this.lastID, original, translation, bucketName });
+  });
+});
+
+// edit vocabulary
 app.put("/vocab/:id", (req, res) => {
   const { id } = req.params;
-  const { word, translation, groupName } = req.body;
+  const { word, translation, bucketName } = req.body;
   const sql =
-    "UPDATE vocab SET word = ?, translation = ?, groupName = ? WHERE id = ?";
-  db.run(sql, [word, translation, groupName, id], function (err) {
+    "UPDATE vocab SET word = ?, translation = ?, bucketName = ? WHERE id = ?";
+  db.run(sql, [word, translation, bucketName, id], function (err) {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ updated: this.changes });
   });
 });
 
-// Vokabel löschen
+// delete vocabulary
 app.delete("/vocab/:id", (req, res) => {
   const { id } = req.params;
   const sql = "DELETE FROM vocab WHERE id = ?";
@@ -82,7 +103,7 @@ app.delete("/vocab/:id", (req, res) => {
   });
 });
 
-// Server starten
+// start server
 app.listen(PORT, () => {
   console.log(`🚀 Server läuft unter http://localhost:${PORT}`);
 });

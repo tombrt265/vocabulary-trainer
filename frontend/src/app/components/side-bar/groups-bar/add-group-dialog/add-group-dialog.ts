@@ -12,7 +12,7 @@ import { Bucket } from '../../../../models/bucket';
 export class AddBucketDialog {
   private readonly dialogRef = inject(MatDialogRef);
 
-  readonly bucket = signal<Bucket>({ id: '', name: '' });
+  readonly bucket = signal<Bucket>({ bucketName: '' });
 
   addBucket() {
     this.dialogRef.close(this.bucket());
