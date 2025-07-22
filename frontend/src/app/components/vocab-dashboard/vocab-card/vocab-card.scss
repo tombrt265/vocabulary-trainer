@@ -1,0 +1,59 @@
+@use "../../../../variables" as *;
+
+:host {
+  position: relative;
+  height: 10rem;
+  width: 20rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  border-radius: 1rem;
+  margin: 1rem;
+  color: $color-blue;
+  font-size: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+:host:hover {
+  background-color: #ddd;
+}
+p:hover {
+  cursor: pointer;
+}
+a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+.btn-trash {
+  position: absolute;
+  top: 75%;
+  width: fit-content;
+  height: fit-content;
+  background-color: inherit;
+  border: 0;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+}
+svg {
+  width: 1.5rem;
+}
+svg:hover {
+  fill: red;
+}
+:host:hover .btn-trash,
+#btn-trash:hover {
+  opacity: 1;
+  visibility: visible;
+}
