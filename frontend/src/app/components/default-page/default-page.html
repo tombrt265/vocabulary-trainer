@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Willkommen bei deinem Vocabulary Trainer</h1>
+
+  @if (buckets.length === 0) {
+  <p class="message">
+    Du hast noch keinen Bucket erstellt. Lege zuerst einen Bucket an, um deine
+    Vokabeln zu organisieren.
+  </p>
+  } @if (buckets.length > 0) {
+  <div class="bucket-list-container">
+    <p class="message">
+      Wähle einen Bucket aus, um deine Vokabeln zu verwalten:
+    </p>
+    <div class="bucket-list">
+      @for (bucket of buckets; track bucket.bucketName) {
+      <div class="bucket-item" (click)="getVocabFromBucket(bucket)">
+        {{ bucket.bucketName }}
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

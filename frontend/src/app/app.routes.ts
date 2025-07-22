@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { VocabDashboard } from './components/vocab-dashboard/vocab-dashboard';
 import { LandingPage } from './components/landing-page/landing-page';
+import { DefaultPage } from './components/default-page/default-page';
 
 export const routes: Routes = [
   {
@@ -9,7 +10,7 @@ export const routes: Routes = [
     title: 'Vocabulary Trainer',
   },
   {
-    path: 'vocabulary',
+    path: 'home',
     component: VocabDashboard,
     title: 'Home Page',
   },

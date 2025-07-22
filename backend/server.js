@@ -81,6 +81,16 @@ app.post("/vocab", (req, res) => {
   });
 });
 
+// add new bucket
+app.post("/buckets", (req, res) => {
+  const { bucketName } = req.body;
+  const sql = "INSERT INTO buckets (bucketName) VALUES (?)";
+  db.run(sql, [bucketName], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ bucketName });
+  });
+});
+
 // edit vocabulary
 app.put("/vocab/:id", (req, res) => {
   const { id } = req.params;
@@ -98,6 +108,16 @@ app.delete("/vocab/:id", (req, res) => {
   const { id } = req.params;
   const sql = "DELETE FROM vocab WHERE id = ?";
   db.run(sql, [id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ deleted: this.changes });
+  });
+});
+
+// delete bucket
+app.delete("/buckets/:bucketName", (req, res) => {
+  const { bucketName } = req.params;
+  const sql = "DELETE FROM buckets WHERE bucketName = ?";
+  db.run(sql, [bucketName], function (err) {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ deleted: this.changes });
   });

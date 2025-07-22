@@ -8,45 +8,39 @@ import { Bucket } from '../models/bucket';
   providedIn: 'root',
 })
 export class VocabularyService {
-  private readonly wordPairUrl = 'http://localhost:3000/vocab';
+  private readonly vocabUrl = 'http://localhost:3000/vocab';
   private readonly bucketUrl = 'http://localhost:3000/buckets';
   private readonly http = inject(HttpClient);
 
   getAllVocabulary(): Observable<WordPair[]> {
-    return this.http.get<WordPair[]>(this.wordPairUrl);
+    return this.http.get<WordPair[]>(this.vocabUrl);
   }
 
   getVocabularyFromBucketName(bucketName: string): Observable<WordPair[]> {
-    return this.getAllVocabulary().pipe(
-      map((list) => {
-        return list.filter((wordPair) => {
-          return wordPair.bucketName === bucketName;
-        });
-      })
-    );
+    return this.http.get<WordPair[]>(`${this.vocabUrl}/${bucketName}`);
   }
 
   addVocabulary(wordPair: WordPair): Observable<WordPair> {
-    return this.http.post<WordPair>(this.wordPairUrl, wordPair);
+    return this.http.post<WordPair>(this.vocabUrl, wordPair);
   }
 
   deleteVocabulary(id: number) {
-    return this.http.delete(`${this.wordPairUrl}/${id}`);
+    return this.http.delete(`${this.vocabUrl}/${id}`);
   }
 
   editVocabulary(wordPair: WordPair) {
-    return this.http.put(`${this.wordPairUrl}/${wordPair.id}`, wordPair);
+    return this.http.put(`${this.vocabUrl}/${wordPair.id}`, wordPair);
   }
 
   getAllBuckets(): Observable<Bucket[]> {
     return this.http.get<Bucket[]>(this.bucketUrl);
   }
 
-  addBucket(bucket: Bucket): Observable<string> {
-    return this.http.post<string>(this.bucketUrl, bucket);
+  addBucket(bucket: Bucket): Observable<Bucket> {
+    return this.http.post<Bucket>(this.bucketUrl, bucket);
   }
 
   deleteBucket(bucketName: string) {
-    return this.http.delete<void>(`${this.bucketUrl}/${bucketName}`);
+    return this.http.delete(`${this.bucketUrl}/${bucketName}`);
   }
 }

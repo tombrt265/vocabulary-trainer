@@ -5,10 +5,12 @@ import { WordPair } from '../../models/word-pair';
 import { VocabularyService } from '../../services/vocabulary-service';
 import { Subject, switchMap } from 'rxjs';
 import { VocabDialog } from './vocab-dialog/vocab-dialog';
+import { Bucket } from '../../models/bucket';
+import { DefaultPage } from '../default-page/default-page';
 
 @Component({
   selector: 'app-vocab-dashboard',
-  imports: [VocabCard],
+  imports: [VocabCard, DefaultPage],
   templateUrl: './vocab-dashboard.html',
   styleUrl: './vocab-dashboard.scss',
 })
@@ -18,6 +20,13 @@ export class VocabDashboard {
 
   vocabularyList = signal<WordPair[]>([]);
   fetchAllVocabularyData$ = new Subject<void>();
+  buckets = signal<Bucket[]>([
+    { bucketName: 'German' },
+    { bucketName: 'English' },
+    { bucketName: 'French' },
+    { bucketName: 'Spanish' },
+  ]);
+  selectedBucket = signal<string>('');
 
   constructor() {
     this.fetchAllVocabularyData$

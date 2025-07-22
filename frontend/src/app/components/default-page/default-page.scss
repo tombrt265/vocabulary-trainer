@@ -1,0 +1,45 @@
+@use "../../../variables" as *;
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  color: #333;
+}
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: $color-blue;
+}
+.message {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+a {
+  text-decoration: none;
+  color: $color-blue;
+  font-size: 1.1rem;
+}
+.bucket-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bucket-list {
+  max-width: fit-content;
+  min-width: 30%;
+}
+.bucket-item {
+  height: 2rem;
+  border-bottom: 2px solid $color-blue;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+.bucket-item:hover {
+  color: $color-blue;
+  font-weight: bold;
+}
