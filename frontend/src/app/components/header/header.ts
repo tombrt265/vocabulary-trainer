@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { GroupsBar } from '../side-bar/groups-bar/groups-bar';
+import { SettingsTab } from '../side-bar/settings-tab/settings-tab';
 
 @Component({
   selector: 'app-header',
-  imports: [GroupsBar],
+  imports: [GroupsBar, SettingsTab],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
