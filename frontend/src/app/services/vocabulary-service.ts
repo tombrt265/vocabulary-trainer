@@ -40,7 +40,7 @@ export class VocabularyService {
     return this.http.post<Bucket>(this.bucketUrl, bucket);
   }
 
-  deleteBucket(bucketName: string) {
-    return this.http.delete(`${this.bucketUrl}/${bucketName}`);
+  deleteBucket(bucket: Bucket) {
+    return this.http.delete(`${this.bucketUrl}/${bucket.bucketName}`);
   }
 }

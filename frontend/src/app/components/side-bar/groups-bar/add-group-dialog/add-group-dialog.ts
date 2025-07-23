@@ -11,17 +11,20 @@ import { Bucket } from '../../../../models/bucket';
 })
 export class AddBucketDialog {
   private readonly dialogRef = inject(MatDialogRef);
-
-  readonly bucket = signal<Bucket>({ bucketName: '' });
+  bucket = signal<Bucket>({ bucketName: '' });
 
   addBucket() {
+    if (this.bucket().bucketName.trim() === '') {
+      this.bucket.set({ bucketName: 'Empty Bucket' });
+      return;
+    }
     this.dialogRef.close(this.bucket());
   }
 
   updateBucket(newName: string) {
     this.bucket.update((current) => ({
       ...current,
-      name: newName,
+      bucketName: newName,
     }));
   }
 }

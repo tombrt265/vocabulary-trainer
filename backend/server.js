@@ -83,11 +83,11 @@ app.post("/vocab", (req, res) => {
 
 // add new bucket
 app.post("/buckets", (req, res) => {
-  const { bucketName } = req.body;
+  const { bucket } = req.body;
   const sql = "INSERT INTO buckets (bucketName) VALUES (?)";
-  db.run(sql, [bucketName], function (err) {
+  db.run(sql, [bucket.bucketName], function (err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ bucketName });
+    res.json({ bucketName: bucket.bucketName });
   });
 });
 
