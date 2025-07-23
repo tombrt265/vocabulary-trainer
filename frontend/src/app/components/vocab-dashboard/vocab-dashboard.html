@@ -1,5 +1,5 @@
 @if (selectedBucket() === '') {
-<app-default-page [buckets]="buckets()"></app-default-page>
+<app-default-page [buckets]="buckets()" (selectedBucket)="onBucketSelect($event)"></app-default-page>
 } @else {
 <section class="cards-container">
   @for (wordPair of vocabularyList(); track $index) {

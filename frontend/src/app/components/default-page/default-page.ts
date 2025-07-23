@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Bucket } from '../../models/bucket';
 import { RouterModule } from '@angular/router';
 
@@ -9,9 +9,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './default-page.scss',
 })
 export class DefaultPage {
-  @Input() buckets: Bucket[] = [];
+  buckets = input.required<Bucket[]>();
+  selectedBucket = output<Bucket>();
 
-  getVocabFromBucket(bucket: Bucket) {
-    // vocab-dashboard will handle api call (GET /vocab:bucketName) via OUTPUT
+  onBucketSelect(bucket: Bucket) {
+    this.selectedBucket.emit(bucket);
   }
 }

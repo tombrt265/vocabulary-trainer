@@ -64,4 +64,13 @@ export class VocabDashboard {
       this.fetchAllVocabularyData$.next();
     });
   }
+
+  onBucketSelect(bucket: Bucket) {
+    this.selectedBucket.set(bucket.bucketName);
+    this.vocabularyService
+      .getVocabularyFromBucketName(bucket.bucketName)
+      .subscribe((data) => {
+        this.vocabularyList.set(data);
+      });
+  }
 }
