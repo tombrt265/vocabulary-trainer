@@ -1,0 +1,13 @@
+@use "../../../../variables" as *;
+
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+mat-slide-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid $color-blue;
+}
