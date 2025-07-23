@@ -9,6 +9,12 @@
 .groups {
   width: 100%;
 }
+a {
+  color: $text-black;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
 .group {
   position: relative;
   height: 2rem;

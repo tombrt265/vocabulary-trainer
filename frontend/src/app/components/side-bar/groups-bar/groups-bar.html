@@ -1,6 +1,6 @@
 <div class="groups">
   @for (bucket of bucketsList(); track $index) {
-  <div class="group" (click)="onBucketSelect(bucket)">
+  <a class="group" [routerLink]="['/vocabulary', bucket.bucketName]" routerLinkActive="router-link-active">
     {{bucket.bucketName}}
     <button>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -11,7 +11,7 @@
         />
       </svg>
     </button>
-  </div>
+  </a>
   }
 </div>
 <button class="btn-primary" (click)="openBucketDialog()">

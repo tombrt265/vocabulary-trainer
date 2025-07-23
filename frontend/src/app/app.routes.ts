@@ -10,8 +10,13 @@ export const routes: Routes = [
     title: 'Vocabulary Trainer',
   },
   {
-    path: 'home',
+    path: 'default',
+    component: DefaultPage,
+    title: 'Default Page',
+  },
+  {
+    path: 'vocabulary/:bucketName',
     component: VocabDashboard,
-    title: 'Home Page',
+    title: 'Vocabulary Dashboard',
   },
 ];

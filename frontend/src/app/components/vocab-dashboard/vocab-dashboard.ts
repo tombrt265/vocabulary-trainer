@@ -6,50 +6,62 @@ import { VocabularyService } from '../../services/vocabulary-service';
 import { Subject, switchMap } from 'rxjs';
 import { VocabDialog } from './vocab-dialog/vocab-dialog';
 import { Bucket } from '../../models/bucket';
-import { DefaultPage } from '../default-page/default-page';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vocab-dashboard',
-  imports: [VocabCard, DefaultPage],
+  imports: [VocabCard],
   templateUrl: './vocab-dashboard.html',
   styleUrl: './vocab-dashboard.scss',
 })
 export class VocabDashboard {
   private readonly vocabularyService = inject(VocabularyService);
   private readonly dialog = inject(MatDialog);
+  private readonly route = inject(ActivatedRoute);
 
   vocabularyList = signal<WordPair[]>([]);
-  fetchAllVocabularyData$ = new Subject<void>();
-  buckets = signal<Bucket[]>([]);
-  selectedBucket = signal<Bucket | null>(null);
+  fetchVocabularyData$ = new Subject<void>();
+  bucket: Bucket = { bucketName: '' };
 
   constructor() {
-    this.fetchAllVocabularyData$
-      .pipe(switchMap(() => this.vocabularyService.getAllVocabulary()))
+    this.route.paramMap.subscribe((params) => {
+      this.bucket.bucketName = params.get('bucketName') || '';
+      this.vocabularyService
+        .getVocabularyFromBucketName(this.bucket.bucketName)
+        .subscribe((data) => {
+          this.vocabularyList.set(data);
+        });
+    });
+
+    this.fetchVocabularyData$
+      .pipe(
+        switchMap(() =>
+          this.vocabularyService.getVocabularyFromBucketName(
+            this.bucket.bucketName
+          )
+        )
+      )
       .subscribe((data) => {
         this.vocabularyList.set(data);
       });
-    this.fetchAllVocabularyData$.next();
-
-    this.vocabularyService.fetchAllBuckets$
-      .pipe(switchMap(() => this.vocabularyService.getAllBuckets()))
-      .subscribe((data) => {
-        this.buckets.set(data);
-      });
-    this.vocabularyService.fetchAllBuckets$.next();
+    this.fetchVocabularyData$.next();
   }
 
-  openAddDialog(bucket: Bucket) {
+  openAddDialog() {
     this.dialog
       .open(VocabDialog, {
-        data: { original: '', translation: '', bucketName: bucket.bucketName },
+        data: {
+          original: '',
+          translation: '',
+          bucketName: this.bucket.bucketName,
+        },
         panelClass: 'vocab-dialog',
       })
       .afterClosed()
       .subscribe((newWordPair) => {
         if (newWordPair) {
           this.vocabularyService.addVocabulary(newWordPair).subscribe(() => {
-            this.fetchAllVocabularyData$.next();
+            this.fetchVocabularyData$.next();
           });
         }
       });
@@ -57,22 +69,13 @@ export class VocabDashboard {
 
   deleteVocabCard(wordPair: WordPair) {
     this.vocabularyService.deleteVocabulary(wordPair.id!).subscribe(() => {
-      this.fetchAllVocabularyData$.next();
+      this.fetchVocabularyData$.next();
     });
   }
 
   editVocabulary(wordPair: WordPair) {
     this.vocabularyService.editVocabulary(wordPair).subscribe(() => {
-      this.fetchAllVocabularyData$.next();
+      this.fetchVocabularyData$.next();
     });
-  }
-
-  onBucketSelect(bucket: Bucket) {
-    this.selectedBucket.set(bucket);
-    this.vocabularyService
-      .getVocabularyFromBucketName(bucket.bucketName)
-      .subscribe((data) => {
-        this.vocabularyList.set(data);
-      });
   }
 }

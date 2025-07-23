@@ -2,12 +2,13 @@ import { Component, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBucketDialog } from './add-group-dialog/add-group-dialog';
 import { VocabularyService } from '../../../services/vocabulary-service';
-import { Subject, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { Bucket } from '../../../models/bucket';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-groups-bar',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './groups-bar.html',
   styleUrl: './groups-bar.scss',
 })
@@ -37,10 +38,6 @@ export class GroupsBar {
           });
         }
       });
-  }
-
-  onBucketSelect(bucket: Bucket) {
-    this.vocabularyService.getVocabularyFromBucketName(bucket.bucketName);
   }
 
   deleteBucket(bucket: Bucket) {

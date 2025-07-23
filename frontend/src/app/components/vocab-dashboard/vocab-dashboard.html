@@ -1,9 +1,3 @@
-@if (selectedBucket() === null) {
-<app-default-page
-  [buckets]="buckets()"
-  (selectedBucket)="onBucketSelect($event)"
-></app-default-page>
-} @else {
 <section class="cards-container">
   @for (wordPair of vocabularyList(); track $index) {
   <app-vocab-card
@@ -14,8 +8,5 @@
   }
 </section>
 <section class="btn-container">
-  <a class="btn-primary" (click)="openAddDialog(this.selectedBucket()!)"
-    >Hinzufügen</a
-  >
+  <a class="btn-primary" (click)="openAddDialog()">Hinzufügen</a>
 </section>
-}

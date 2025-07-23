@@ -13,9 +13,9 @@
     </p>
     <div class="bucket-list">
       @for (bucket of buckets(); track bucket.bucketName) {
-      <div class="bucket-item" (click)="onBucketSelect(bucket)">
+      <a class="bucket-item" [routerLink]="['/vocabulary', bucket.bucketName]">
         {{ bucket.bucketName }}
-      </div>
+      </a>
       }
     </div>
   </div>
