@@ -21,7 +21,7 @@ export class VocabDashboard {
   vocabularyList = signal<WordPair[]>([]);
   fetchAllVocabularyData$ = new Subject<void>();
   buckets = signal<Bucket[]>([]);
-  selectedBucket = signal<string>('');
+  selectedBucket = signal<Bucket | null>(null);
 
   constructor() {
     this.fetchAllVocabularyData$
@@ -39,10 +39,10 @@ export class VocabDashboard {
     this.vocabularyService.fetchAllBuckets$.next();
   }
 
-  openAddDialog() {
+  openAddDialog(bucket: Bucket) {
     this.dialog
       .open(VocabDialog, {
-        data: { original: '', translation: '' },
+        data: { original: '', translation: '', bucketName: bucket.bucketName },
         panelClass: 'vocab-dialog',
       })
       .afterClosed()
@@ -68,7 +68,7 @@ export class VocabDashboard {
   }
 
   onBucketSelect(bucket: Bucket) {
-    this.selectedBucket.set(bucket.bucketName);
+    this.selectedBucket.set(bucket);
     this.vocabularyService
       .getVocabularyFromBucketName(bucket.bucketName)
       .subscribe((data) => {

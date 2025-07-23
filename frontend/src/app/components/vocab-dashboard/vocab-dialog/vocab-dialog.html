@@ -14,7 +14,7 @@
 </div>
 @if (data.original == '' && data.translation == '') {
 <button class="btn-primary" (click)="addVocabulary()">
-  Vokabel hinzufügen
+  Vokabel hinzufügen ({{ wordPair().bucketName }})
 </button>
 } @else {
 <button class="btn-primary" (click)="editVocabulary()">
