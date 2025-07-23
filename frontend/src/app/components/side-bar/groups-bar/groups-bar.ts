@@ -15,16 +15,15 @@ export class GroupsBar {
   private readonly dialog = inject(MatDialog);
   private readonly vocabularyService = inject(VocabularyService);
 
-  private readonly fetchAllBucketData$ = new Subject<void>();
   readonly bucketsList = signal<Bucket[]>([]);
 
   constructor() {
-    this.fetchAllBucketData$
+    this.vocabularyService.fetchAllBuckets$
       .pipe(switchMap(() => this.vocabularyService.getAllBuckets()))
       .subscribe((data) => {
         this.bucketsList.set(data);
       });
-    this.fetchAllBucketData$.next();
+    this.vocabularyService.fetchAllBuckets$.next();
   }
 
   openBucketDialog() {
@@ -34,20 +33,19 @@ export class GroupsBar {
       .subscribe((newBucket) => {
         if (newBucket) {
           this.vocabularyService.addBucket(newBucket).subscribe(() => {
-            this.fetchAllBucketData$.next();
+            this.vocabularyService.fetchAllBuckets$.next();
           });
         }
       });
   }
 
   onBucketSelect(bucket: Bucket) {
-    this.vocabularyService.getVocabularyFromBucketName(bucket.bucketName || '');
-    // Logic to handle vocabulary display from the selected bucket
+    this.vocabularyService.getVocabularyFromBucketName(bucket.bucketName);
   }
 
   deleteBucket(bucket: Bucket) {
     this.vocabularyService.deleteBucket(bucket).subscribe(() => {
-      this.fetchAllBucketData$.next();
+      this.vocabularyService.fetchAllBuckets$.next();
     });
   }
 }

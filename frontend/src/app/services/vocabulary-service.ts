@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { WordPair } from '../models/word-pair';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Bucket } from '../models/bucket';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class VocabularyService {
   private readonly vocabUrl = 'http://localhost:3000/vocab';
   private readonly bucketUrl = 'http://localhost:3000/buckets';
   private readonly http = inject(HttpClient);
+  fetchAllBuckets$ = new Subject<void>();
 
   getAllVocabulary(): Observable<WordPair[]> {
     return this.http.get<WordPair[]>(this.vocabUrl);

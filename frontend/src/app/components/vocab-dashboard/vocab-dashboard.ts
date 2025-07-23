@@ -20,12 +20,7 @@ export class VocabDashboard {
 
   vocabularyList = signal<WordPair[]>([]);
   fetchAllVocabularyData$ = new Subject<void>();
-  buckets = signal<Bucket[]>([
-    { bucketName: 'German' },
-    { bucketName: 'English' },
-    { bucketName: 'French' },
-    { bucketName: 'Spanish' },
-  ]);
+  buckets = signal<Bucket[]>([]);
   selectedBucket = signal<string>('');
 
   constructor() {
@@ -35,6 +30,13 @@ export class VocabDashboard {
         this.vocabularyList.set(data);
       });
     this.fetchAllVocabularyData$.next();
+
+    this.vocabularyService.fetchAllBuckets$
+      .pipe(switchMap(() => this.vocabularyService.getAllBuckets()))
+      .subscribe((data) => {
+        this.buckets.set(data);
+      });
+    this.vocabularyService.fetchAllBuckets$.next();
   }
 
   openAddDialog() {
