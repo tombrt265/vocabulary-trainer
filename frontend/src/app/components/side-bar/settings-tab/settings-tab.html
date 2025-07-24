@@ -1,15 +1,55 @@
 <div class="settings">
-  <div class="row">
-    <p>
-      <mat-slide-toggle labelPosition="before">Light Mode</mat-slide-toggle>
-    </p>
+  <div class="row brightness-switcher">
+    <p>Dark Mode</p>
+    <label class="switch">
+      <input type="checkbox" />
+      <span class="slider round"></span>
+    </label>
   </div>
-  <div class="row">
-    <p>Color Theme</p>
-    <input type="radio" />
-    <input type="radio" />
-    <input type="radio" />
-    <input type="radio" />
-    <input type="radio" />
+  <div class="row color-theme-switcher">
+    <p>Farbthema</p>
+    <div class="color-options">
+      <label class="color-radio blue">
+        <input
+          class="color-option blue"
+          data-color="blue"
+          title="Blau"
+          type="radio"
+          name="color-theme"
+        />
+        <span class="circle"></span>
+      </label>
+      <label class="color-radio green">
+        <input
+          data-color="green"
+          title="Grün"
+          type="radio"
+          name="color-theme"
+        />
+        <span class="circle"></span>
+      </label>
+      <label class="color-radio red">
+        <input data-color="red" title="Rot" type="radio" name="color-theme" />
+        <span class="circle"></span>
+      </label>
+      <label class="color-radio orange">
+        <input
+          data-color="orange"
+          title="Orange"
+          type="radio"
+          name="color-theme"
+        />
+        <span class="circle"></span>
+      </label>
+      <label class="color-radio purple">
+        <input
+          data-color="violet"
+          title="Violett"
+          type="radio"
+          name="color-theme"
+        />
+        <span class="circle"></span>
+      </label>
+    </div>
   </div>
 </div>
